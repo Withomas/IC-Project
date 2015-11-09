@@ -12,9 +12,7 @@ public class SpaceController : MonoBehaviour {
 	void Update () {
 		float AxeHorizontal = Input.GetAxis ("Horizontal");
 		float AxeVertical = Input.GetAxis ("Vertical");
-
-
-
+	
 		Debug.Log (AxeHorizontal);
 
 
