@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public GameObject Vaisseau;
+	public int ScoreAllie;
+	public int ScoreEnnemi;
+
 
 	private const int NOMBREVAISSEAUXALLIES = 10;
 	private const int NOMBREVAISSEAUXENNEMIS = 10;
@@ -56,5 +59,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void initialisation_score(){
+		ScoreAllie = 0; 
+		ScoreEnnemi = 0;
 	}
 }

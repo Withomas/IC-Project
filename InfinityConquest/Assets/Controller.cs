@@ -33,34 +33,23 @@ using System.Collections;
 
 
 public class Controller : MonoBehaviour {
-	
-	
+
 	public float speed = 90.0f;		// max speed of camera
 	public float sensitivity = 0.25f; 		// keep it from 0..1
 	public bool inverted = false;
-	
-	
+
 	private Vector3 lastMouse = new Vector3(255, 255, 255);
-	
-	
+
 	// smoothing
 	public bool smooth = true;
 	public float acceleration = 0.1f;
 	private float actSpeed = 0.0f;			// keep it from 0 to 1
 	private Vector3 lastDir = new Vector3();
-	
-	
+		
 	// Use this for initialization
 	void Start () {
-		
-		
 	}
-	
-	
-	
-	
-	
-	
+
 	// Update is called once per frame
 	void Update()
 	{
@@ -105,9 +94,7 @@ public class Controller : MonoBehaviour {
 			else
 				actSpeed = 0.0f;
 		}
-		
-		
-		
+
 		//import
 		if (smooth)
 			transform.Translate(lastDir * actSpeed * speed * Time.deltaTime);
@@ -127,10 +114,7 @@ public class Controller : MonoBehaviour {
 		vTranslation *= Time.deltaTime;
 		hTranslation *= Time.deltaTime;
 		rotation *= Time.deltaTime;
-		
-		
-		
-		
+
 		// Allow turning at anytime. Keep the character facing in the same direction as the Camera if the right mouse button is down.
 		if (Input.GetMouseButton(1))
 		{
@@ -154,9 +138,7 @@ public class Controller : MonoBehaviour {
 		//    Screen.lockCursor = true;
 		//else
 		//    Screen.lockCursor = false;
-		
-		
-		
+
 		
 	}
 	
