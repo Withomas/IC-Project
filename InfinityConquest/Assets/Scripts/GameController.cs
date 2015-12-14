@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
-	public GameObject Vaisseau;
+	//public GameObject Vaisseau;
 	public int ScoreAllie;
 	public int ScoreEnnemi;
 
@@ -47,10 +47,10 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	private void initialisation_vaisseaux(List<GameObject> ListeVaisseaux , int NombreDeVaisseaux, Vector3 PointDeDepart)
 	{
-		for (int i = 0; i < NombreDeVaisseaux; i++) {
-			ListeVaisseaux.Add((GameObject)Instantiate(Vaisseau));
-		}
-
+//		for (int i = 0; i < NombreDeVaisseaux; i++) {
+//			ListeVaisseaux.Add((GameObject)Instantiate(Vaisseau));
+//		}
+//
 
 	}
 
