@@ -5,13 +5,27 @@ public class AccrocheVaisseau : MonoBehaviour {
 	
 	public GameObject PointAccroche;
 
-	void OnCollisionEnter (Collision col)
+	[SerializeField]
+	private bool isPlayer;
+
+	void Start () {
+		if (this.gameObject.tag == "Player") {
+			isPlayer = true;
+		} else {
+			isPlayer = false;
+		}
+
+		Debug.Log (false == false);
+	}
+
+	void OnTriggerEnter (Collider other)
 	{
-		if (col.gameObject.name == "Drapeau_Ennemi") 
+		if (other.gameObject.tag == "Flag") 
 		{
-			col.transform.parent = PointAccroche.transform;
-			col.transform.position = PointAccroche.transform.position;
-			col.transform.rotation = PointAccroche.transform.rotation;
+			if (other.gameObject.GetComponent<DrapeauBehavior>().enemyFlag == isPlayer) {
+				Debug.Log ("prout");
+				other.gameObject.transform.parent = PointAccroche.gameObject.transform;
+			}
 		}
 	}
 }

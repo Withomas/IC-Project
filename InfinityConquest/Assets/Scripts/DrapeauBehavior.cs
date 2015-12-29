@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DrapeauBehavior : MonoBehaviour {
 
+	public bool enemyFlag = true;
+
 	void OnTriggerEnter(Collider vaisseau)
 	{
 
