@@ -17,7 +17,7 @@ public class LaserBehavior : MonoBehaviour {
 	}
 	void Start()
 	{
-		Debug.logger.Log ("Laser Started");
+		//Debug.logger.Log ("Laser Started");
 	}
 
 	public void Fire()

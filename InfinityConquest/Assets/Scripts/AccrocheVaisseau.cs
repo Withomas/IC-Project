@@ -5,7 +5,6 @@ public class AccrocheVaisseau : MonoBehaviour {
 	
 	public GameObject PointAccroche;
 
-	[SerializeField]
 	private bool isPlayer;
 
 	void Start () {
@@ -14,8 +13,6 @@ public class AccrocheVaisseau : MonoBehaviour {
 		} else {
 			isPlayer = false;
 		}
-
-		Debug.Log (false == false);
 	}
 
 	void OnTriggerEnter (Collider other)

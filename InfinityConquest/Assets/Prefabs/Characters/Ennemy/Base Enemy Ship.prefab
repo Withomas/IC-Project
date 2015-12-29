@@ -28,6 +28,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11407044}
   m_Layer: 9
   m_Name: Base Enemy Ship
   m_TagString: Enemy
@@ -161,7 +162,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -241,6 +242,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11407044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad62aeaca65e2245829b4ed2c08b459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 250
+  lifePoints: 2
+  player: {fileID: 0}
+  playerFlag: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1797,6 +1813,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifePoints
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

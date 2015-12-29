@@ -7,13 +7,13 @@ public class EnnemyManager : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-	
+		ennemyPool.Spawn (Vector3.zero);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown ("s")) {
+		if (Input.GetKeyDown ("space")) {
 			ennemyPool.Spawn (Vector3.zero);
 		}
 	}
