@@ -1,16 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DrapeauBehavior : MonoBehaviour {
+public class DrapeauBehavior : MonoBehaviour 
+{
+	public bool isEnemyFlag = true;
+	public float respawnDelay = 1.0f;
 
-	void OnTriggerEnter(Collider vaisseau)
+	public bool isCatchable = true; // means that no one owns it
+
+	private Vector3 spawnPosition;
+
+	void Start()
 	{
+		spawnPosition = transform.position;
+	}
 
-		foreach (var transform in tag) {
-			
-		}
+	public void Detach()
+	{
+		gameObject.GetComponentInParent<AccrocheVaisseau> ().hasFlag = false;
+		isCatchable = true;
+		gameObject.transform.parent = null;
+	}
 
-		Debug.Log(vaisseau.transform.ToString());
+	public void Goal()
+	{
+		Detach ();
+		gameObject.GetComponent<Collider> ().enabled = false;
+		isCatchable = false;
+		gameObject.transform.GetChild (0).gameObject.SetActive (false);
 
+		StartCoroutine (Respawn());
+	}
+
+	private IEnumerator Respawn()
+	{
+		yield return new WaitForSeconds(Mathf.Max (respawnDelay, 0));
+
+		transform.position = spawnPosition;
+		isCatchable = true;
+		gameObject.GetComponent<Collider> ().enabled = true;
+		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 	}
 }

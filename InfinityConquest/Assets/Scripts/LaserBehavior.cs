@@ -12,12 +12,12 @@ public class LaserBehavior : MonoBehaviour {
 	void Awake()
 	{
 		this._line = base.gameObject.GetComponent<LineRenderer> (); 
-		Debug.logger.Log ("Laser Awake");
+		//Debug.logger.Log ("Laser Awake");
 		Destroy (this.gameObject, _LifeTime);
 	}
 	void Start()
 	{
-		Debug.logger.Log ("Laser Started");
+		//Debug.logger.Log ("Laser Started");
 	}
 
 	public void Fire()
@@ -27,18 +27,14 @@ public class LaserBehavior : MonoBehaviour {
 		
 	private void FireLaser()
 	{
-		Debug.logger.Log ("Laser tiré à la position  : " + transform.position + " rotation : " + transform.rotation);
+		//Debug.logger.Log ("Laser tiré à la position  : " + transform.position + " rotation : " + transform.rotation);
 		this.Shooted = true;
 	}
 
 	void Update()
 	{	
 		if (this.Shooted) {
-			//Puis on l'envoi
 			transform.Translate(Vector3.forward * Time.deltaTime * _speed);	
 		}
-
 	}
-
-
 }

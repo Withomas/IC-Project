@@ -9,6 +9,7 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	public Transform RightFire;
 	public Transform LeftFire;
 
+	[SerializeField]
 	private int PointsDevie = 0;
 	private int Equipe = 0;
 	private int Arme = 0;
@@ -29,24 +30,42 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	public void Damage(int damage)
 	{
 		this.PointsDevie = PointsDevie - damage;
+
+		if (PointsDevie <= 0)
+		{
+			Die ();
+		}
+	}
+
+	private void Die()
+	{
+		Debug.Log ("I is dead");
+		// TO DO !!!!
 	}
 
 	private void Fire()
 	{
-		GameObject laserRight = Instantiate (Laser as GameObject);
-		GameObject laserLeft = Instantiate (Laser as GameObject);
-
-		LaserBehavior laserBehaviorRight = laserRight.GetComponent<LaserBehavior> ();
-		LaserBehavior laserBehaviorLeft = laserLeft.GetComponent<LaserBehavior> ();
-
-		laserRight.transform.position = RightFire.position;
-		laserRight.transform.rotation = RightFire.rotation;
-
-		laserLeft.transform.position = LeftFire.position;
-		laserLeft.transform.rotation = LeftFire.rotation;
-
-		laserBehaviorRight.Shooted = true;
-		laserBehaviorLeft.Shooted = true;
+		launchLaser (LeftFire);
+		launchLaser (RightFire);
 	}
 
+	private void launchLaser(Transform origin)
+	{
+		GameObject laser = Instantiate (Laser as GameObject);
+
+		LaserBehavior laserBehavior = laser.GetComponent<LaserBehavior> ();
+
+		laser.transform.position = origin.position;
+		laser.transform.rotation = origin.rotation;
+
+		laserBehavior.Shooted = true;
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Laser") 
+		{
+			Damage (1);
+		}
+	}
 }
