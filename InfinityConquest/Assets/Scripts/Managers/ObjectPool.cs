@@ -44,9 +44,17 @@ public class ObjectPool : MonoBehaviour
 	{
 		for(int i = 0; i < numberOfObjectToInstantiate; i++)
 		{
-			objects.Add(Instantiate(prefabs[Random.Range(0, prefabs.Length)], Vector3.zero, Quaternion.identity) as GameObject);
+			objects.Add(Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity) as GameObject);
 			objects[objects.Count - 1].gameObject.SetActive (true);
-			objects [objects.Count - 1].gameObject.transform.position = position;
+		}
+	}
+
+	private void addInPoolActive(Vector3 position, Quaternion rotation, int numberOfObjectToInstantiate = 1)
+	{
+		for(int i = 0; i < numberOfObjectToInstantiate; i++)
+		{
+			objects.Add(Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, rotation) as GameObject);
+			objects[objects.Count - 1].gameObject.SetActive (true);
 		}
 	}
 		
@@ -86,6 +94,32 @@ public class ObjectPool : MonoBehaviour
 		addInPoolActive(spawnPosition, number);
 	}
 
+	public void Spawn(Vector3 spawnPosition, Quaternion spawnRotation, int number = 1)
+	{
+		if(number < 1)
+		{
+			return;
+		}
+
+		foreach(GameObject obj in objects)
+		{
+			if(obj.activeSelf == false)
+			{
+				obj.gameObject.SetActive (true);
+				obj.gameObject.transform.position = spawnPosition;
+				obj.gameObject.transform.rotation = spawnRotation;
+
+				number--;
+				if(number < 1)
+				{
+					return;
+				}
+			}
+		}
+
+		//if the programm is at this state, then there is no more objects usable on the scene
+		addInPoolActive(spawnPosition, spawnRotation, number);
+	}
 
 	// Procedure : Reset
 	// Description : deactivate each object of the pool

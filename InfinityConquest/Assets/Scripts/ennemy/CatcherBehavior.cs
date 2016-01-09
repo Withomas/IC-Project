@@ -9,23 +9,53 @@ public class CatcherBehavior : Ennemy
 
 	// Update is called once per frame
 	void Update () {
-		moveToFlag ();
+
+		if (hasFlag) 
+		{
+			MoveToBase ();
+		}
+		else if (playerFlag.isCatchable) 
+		{
+			MoveToPlayerFlag ();
+		}
+		else
+		{
+			ChasePlayer ();
+		}
+
+		if (Input.GetKeyDown ("p")) 
+		{
+			if (hasFlag)
+			{
+				playerFlag.Detach ();
+			}
+		}
 	}
 
-	void moveToFlag()
+	private void MoveToPlayerFlag()
 	{
-		Vector3 flagDirection = getFlagDirection ();
+		Vector3 flagDirection = getTargetDirection (playerFlag.transform.position);
 		flagDirection.Normalize ();
 		rb.velocity = flagDirection * speed;
 
-
-		// TO DO : faire en sorte qu'il ne tourne pas sur lui même comme un taré !!!! ON DIRAIS UN CHATTTTTT !!!!
-		// faire en sorte de maximiser sa vitesse de rotation
-		transform.rotation = Quaternion.FromToRotation(transform.forward, flagDirection);
+		transform.rotation = GetRotationToTarget (playerFlag.transform.position);
 	}
 
-	private Vector3 getFlagDirection()
+	private void MoveToBase()
 	{
-		return playerFlag.transform.position - transform.position;
+		Vector3 baseDirection = getTargetDirection (ennemyBase.transform.position);
+		baseDirection.Normalize ();
+		rb.velocity = baseDirection * speed;
+
+		transform.rotation = GetRotationToTarget (ennemyBase.transform.position);
+	}
+
+	private void ChasePlayer()
+	{
+		Vector3 playerDirection = getTargetDirection (player.transform.position);
+		playerDirection.Normalize ();
+		rb.velocity = playerDirection * speed;
+
+		transform.rotation = GetRotationToTarget (player.transform.position);
 	}
 }

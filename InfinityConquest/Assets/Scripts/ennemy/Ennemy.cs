@@ -6,11 +6,25 @@ public class Ennemy : MonoBehaviour {
 	public float speed;
 	public int lifePoints;
 
+	public float maxRotationSpeed;
+
 	public GameObject player;
-	public GameObject playerFlag;
+	public DrapeauBehavior playerFlag;
+	public DrapeauBehavior ennemyFlag;
+	public TeamBase ennemyBase;
 
 	protected Rigidbody rb;
 	protected int currentLifePoint;
+
+	protected bool hasFlag 
+	{
+		get {
+			return GetComponent<AccrocheVaisseau> ().hasFlag;
+		}
+		set{
+			GetComponent<AccrocheVaisseau> ().hasFlag = value;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +33,6 @@ public class Ennemy : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Debug.Log ("enabling");
 		reset ();
 	}
 
@@ -35,12 +48,25 @@ public class Ennemy : MonoBehaviour {
 			Debug.Log ("something went wrong while fetching player");
 		}
 
-		playerFlag = GameObject.Find ("Drapeau_Gentil");
+		playerFlag = GameObject.Find ("Drapeau_Gentil").GetComponent<DrapeauBehavior> ();
 		if (playerFlag == null) {
+			Debug.Log ("something went wrong while fetching player flag");
+		}
+
+		ennemyFlag = GameObject.Find ("Drapeau_Ennemi").GetComponent<DrapeauBehavior> ();
+		if (ennemyFlag == null) {
 			Debug.Log ("something went wrong while fetching ennemy flag");
 		}
 
+		ennemyBase = GameObject.Find ("ennemyBase").GetComponent<TeamBase> ();
+		if (ennemyBase == null) {
+			Debug.Log ("something went wrong while fetching ennemy base");
+		}
+
 		rb = GetComponent<Rigidbody> ();
+		if (rb == null) {
+			Debug.Log ("something went wrong while fetching the rigidbody");
+		}
 
 		currentLifePoint = lifePoints;
 	}
@@ -69,6 +95,23 @@ public class Ennemy : MonoBehaviour {
 
 	public void Die()
 	{
+		if (hasFlag) {
+			playerFlag.Detach();
+		}
+
 		gameObject.SetActive (false);
 	}
+
+	protected Vector3 getTargetDirection(Vector3 targetPosition)
+	{
+		return targetPosition - transform.position;
+	}
+
+	protected Quaternion GetRotationToTarget (Vector3 targetPosition)
+	{
+		Quaternion rotation = Quaternion.LookRotation(getTargetDirection(targetPosition));
+
+		return Quaternion.Slerp (transform.rotation, rotation, maxRotationSpeed * Time.deltaTime);
+	}
 }
+ 
