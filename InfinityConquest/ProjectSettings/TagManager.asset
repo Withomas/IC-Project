@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Flag
-  - PlayerLaser
+  - Laser
   - Base
   layers:
   - Default

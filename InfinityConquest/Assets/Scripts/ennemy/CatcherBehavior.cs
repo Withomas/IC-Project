@@ -3,8 +3,15 @@ using System.Collections;
 
 public class CatcherBehavior : Ennemy 
 {
+	public float PlayerDistance;
+
 	void Start () {
 		initalisation ();
+	}
+
+	void OnEnable()
+	{
+		reset ();
 	}
 
 	// Update is called once per frame
@@ -20,42 +27,30 @@ public class CatcherBehavior : Ennemy
 		}
 		else
 		{
-			ChasePlayer ();
+			DefenceBehavior ();
 		}
 
-		if (Input.GetKeyDown ("p")) 
+		PlayerDistance = getPlayerDistance ();
+	}
+
+	private void DefenceBehavior()
+	{
+		if (getPlayerDistance () < shootDistance)
 		{
-			if (hasFlag)
-			{
-				playerFlag.Detach ();
-			}
+			Shoot ();
+		}
+
+		if (getPlayerDistance () < chaseDistance) {
+			ChasePlayer ();
+		} 
+		else 
+		{
+			TurnAroundBase ();
 		}
 	}
 
-	private void MoveToPlayerFlag()
+	private void TurnAroundBase()
 	{
-		Vector3 flagDirection = getTargetDirection (playerFlag.transform.position);
-		flagDirection.Normalize ();
-		rb.velocity = flagDirection * speed;
-
-		transform.rotation = GetRotationToTarget (playerFlag.transform.position);
-	}
-
-	private void MoveToBase()
-	{
-		Vector3 baseDirection = getTargetDirection (ennemyBase.transform.position);
-		baseDirection.Normalize ();
-		rb.velocity = baseDirection * speed;
-
-		transform.rotation = GetRotationToTarget (ennemyBase.transform.position);
-	}
-
-	private void ChasePlayer()
-	{
-		Vector3 playerDirection = getTargetDirection (player.transform.position);
-		playerDirection.Normalize ();
-		rb.velocity = playerDirection * speed;
-
-		transform.rotation = GetRotationToTarget (player.transform.position);
+		//do stuff !!!
 	}
 }

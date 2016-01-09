@@ -8,13 +8,23 @@ public class Ennemy : MonoBehaviour {
 
 	public float maxRotationSpeed;
 
+	public float shootDistance;
+	public float chaseDistance;
+	public float shootDelay; // in seconds
+
 	public GameObject player;
 	public DrapeauBehavior playerFlag;
 	public DrapeauBehavior ennemyFlag;
 	public TeamBase ennemyBase;
 
+	public GameObject laser;
+
+	public GameObject shootSpawnLeft;
+	public GameObject shootSpawnRight;
+
 	protected Rigidbody rb;
 	protected int currentLifePoint;
+	protected bool canShoot = true;
 
 	protected bool hasFlag 
 	{
@@ -74,6 +84,7 @@ public class Ennemy : MonoBehaviour {
 	public void reset()
 	{
 		currentLifePoint = lifePoints;
+		canShoot = true;
 	}
 
 	// launch the ship once it is ready
@@ -84,8 +95,7 @@ public class Ennemy : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "PlayerLaser") {
-			Debug.Log ("ouch");
+		if (other.gameObject.tag == "Laser") {
 			currentLifePoint--;
 			if (currentLifePoint <= 0) {
 				Die ();
@@ -112,6 +122,71 @@ public class Ennemy : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation(getTargetDirection(targetPosition));
 
 		return Quaternion.Slerp (transform.rotation, rotation, maxRotationSpeed * Time.deltaTime);
+	}
+
+	protected float getPlayerDistance()
+	{
+		return Vector3.Distance (transform.position, player.transform.position);
+	}
+
+	protected void Shoot()
+	{
+		if (canShoot)
+		{
+			launchLaser (shootSpawnLeft.transform);
+			launchLaser (shootSpawnRight.transform);
+			if (shootDelay > 0.0f) 
+			{
+				canShoot = false;
+				reload ();
+			}
+		}
+	}
+
+	protected void ChasePlayer()
+	{
+		Vector3 playerDirection = getTargetDirection (player.transform.position);
+		playerDirection.Normalize ();
+		rb.velocity = playerDirection * speed;
+
+		transform.rotation = GetRotationToTarget (player.transform.position);
+	}
+
+	protected void MoveToPlayerFlag()
+	{
+		Vector3 flagDirection = getTargetDirection (playerFlag.transform.position);
+		flagDirection.Normalize ();
+		rb.velocity = flagDirection * speed;
+
+		transform.rotation = GetRotationToTarget (playerFlag.transform.position);
+	}
+
+	protected void MoveToBase()
+	{
+		Vector3 baseDirection = getTargetDirection (ennemyBase.transform.position);
+		baseDirection.Normalize ();
+		rb.velocity = baseDirection * speed;
+
+		transform.rotation = GetRotationToTarget (ennemyBase.transform.position);
+	}
+
+	private void launchLaser(Transform origin)
+	{
+		GameObject l = Instantiate (laser as GameObject);
+
+		LaserBehavior laserBehavior = l.GetComponent<LaserBehavior> ();
+
+		l.transform.position = origin.position;
+		l.transform.rotation = origin.rotation;
+
+		laserBehavior.Shooted = true;
+	}
+
+	protected IEnumerator reload()
+	{
+		yield return new WaitForSeconds (shootDelay);
+
+		canShoot = true;
 	}
 }
  

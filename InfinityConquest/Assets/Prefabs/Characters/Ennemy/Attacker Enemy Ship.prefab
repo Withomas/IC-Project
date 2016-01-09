@@ -27,13 +27,13 @@ GameObject:
   - 4: {fileID: 400002}
   - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
-  - 114: {fileID: 11407044}
   - 114: {fileID: 11436058}
   - 65: {fileID: 6504842}
+  - 114: {fileID: 11456486}
   m_Layer: 9
-  m_Name: Base Enemy Ship
+  m_Name: Attacker Enemy Ship
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400006}
   m_Layer: 9
-  m_Name: Shot Spawn
+  m_Name: Shot Spawn Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,6 +79,21 @@ GameObject:
   - 4: {fileID: 456312}
   m_Layer: 9
   m_Name: FlagPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &145622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 425388}
+  m_Layer: 9
+  m_Name: Shot Spawn Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,6 +122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
+  - {fileID: 425388}
   - {fileID: 400006}
   - {fileID: 400004}
   - {fileID: 456312}
@@ -123,15 +139,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33, y: -9.8, z: 118.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400002}
+  m_RootOrder: 2
+--- !u!4 &425388
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27, y: -9.8, z: 120.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -147,7 +175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!23 &2300000
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -283,22 +311,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11407044
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad62aeaca65e2245829b4ed2c08b459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 250
-  lifePoints: 2
-  maxRotationSpeed: 8
-  player: {fileID: 0}
-  playerFlag: {fileID: 0}
 --- !u!114 &11436058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,6 +324,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointAccroche: {fileID: 127454}
   hasFlag: 0
+--- !u!114 &11456486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3783ec1f5291ff4ea51dee3b8cdbbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 250
+  lifePoints: 2
+  maxRotationSpeed: 8
+  shootDistance: 750
+  chaseDistance: 2500
+  shootDelay: 1
+  player: {fileID: 0}
+  playerFlag: {fileID: 0}
+  ennemyFlag: {fileID: 0}
+  ennemyBase: {fileID: 0}
+  laser: {fileID: 165584, guid: 705448ee57519f740b41b832dd65d24e, type: 2}
+  shootSpawnLeft: {fileID: 100006}
+  shootSpawnRight: {fileID: 145622}
+  PlayerDistance: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1873,6 +1910,26 @@ Prefab:
       propertyPath: maxRotationSpeed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shootDistance
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: chaseDistance
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shootDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Attacker Enemy Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: laser
+      value: 
+      objectReference: {fileID: 165584, guid: 705448ee57519f740b41b832dd65d24e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100002}
