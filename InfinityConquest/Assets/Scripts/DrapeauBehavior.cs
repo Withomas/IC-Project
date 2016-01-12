@@ -10,6 +10,8 @@ public class DrapeauBehavior : MonoBehaviour
 
 	private Vector3 spawnPosition;
 
+	public GameController controller;
+
 	void Start()
 	{
 		spawnPosition = transform.position;
@@ -34,11 +36,20 @@ public class DrapeauBehavior : MonoBehaviour
 
 	private IEnumerator Respawn()
 	{
+		//Augmentation des scores
+		if (isEnemyFlag) {
+			controller.IncreaseAlliesScore ();
+		} else {
+			controller.IncreaseEnnemiesScore ();
+		}
+
 		yield return new WaitForSeconds(Mathf.Max (respawnDelay, 0));
 
 		transform.position = spawnPosition;
 		isCatchable = true;
 		gameObject.GetComponent<Collider> ().enabled = true;
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
+
+
 	}
 }

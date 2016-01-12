@@ -133,6 +133,14 @@ Prefab:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 11448624, guid: 0ec8d459f62a3cc46aa27afdbfaf5a08, type: 2}
+      propertyPath: Controller
+      value: 
+      objectReference: {fileID: 1862892600}
+    - target: {fileID: 11448624, guid: 0ec8d459f62a3cc46aa27afdbfaf5a08, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1862892601}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ec8d459f62a3cc46aa27afdbfaf5a08, type: 2}
   m_IsPrefabParent: 0
@@ -280,6 +288,14 @@ Prefab:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11469950, guid: 424fe29c9e8735146895a98526f4ee1b, type: 2}
+      propertyPath: Controller
+      value: 
+      objectReference: {fileID: 1862892600}
+    - target: {fileID: 11469950, guid: 424fe29c9e8735146895a98526f4ee1b, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1862892601}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 424fe29c9e8735146895a98526f4ee1b, type: 2}
   m_IsPrefabParent: 0
@@ -1010,8 +1026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7423e851ed4627f43b29c7fc39934aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreAllie: 10
-  ScoreEnnemi: 30
+  ScoreAllie: 0
+  ScoreEnnemi: 0
 --- !u!4 &1862892602
 Transform:
   m_ObjectHideFlags: 0

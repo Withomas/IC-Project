@@ -1,34 +1,4 @@
-﻿/*using UnityEngine;
-using System.Collections;
-
-public class Controller : MonoBehaviour {
-
-	Rigidbody rb;
-	public float accel= 10;
-	// Use this for initialization
-	void Start () {
-		rb = this.GetComponent<Rigidbody> ();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-
-		Vector3 relativePos = Input.mousePosition - transform.position;
-		Quaternion rotation = Quaternion.LookRotation(relativePos);
-		transform.rotation = rotation;
-
-			float DeplacementHorizontal = Input.GetAxis ("Horizontal");
-			float DeplacementVertical = Input.GetAxis ("Vertical");
-
-		Vector3 deplacement = new Vector3 (DeplacementHorizontal, 0, DeplacementVertical);
-		deplacement = transform.TransformDirection (deplacement);
-		rb.velocity = deplacement * accel;
-	}
-}*/
-
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 

@@ -7,26 +7,10 @@ public class GameController : MonoBehaviour {
 	//public GameObject Vaisseau;
 	public int ScoreAllie;
 	public int ScoreEnnemi;
-
-
-	private const int NOMBREVAISSEAUXALLIES = 10;
-	private const int NOMBREVAISSEAUXENNEMIS = 10;
-
-	private List<GameObject> VaisseauxEnnemis;
-	private List<GameObject> VaisseauxAllies;
+	private const int SCOREMAXIMUM = 1;
 
 	// Use this for initialization
 	void Start () {
-
-		//Instianciation des variables
-		VaisseauxAllies = new List<GameObject> ();
-		VaisseauxEnnemis = new List<GameObject> ();
-
-		initialisation_carte ();
-		initialisation_vaisseaux (VaisseauxAllies, NOMBREVAISSEAUXALLIES, new Vector3 ());
-		initialisation_vaisseaux (VaisseauxEnnemis, NOMBREVAISSEAUXENNEMIS, new Vector3 ());
-		initialisation_drapeau ();
-		initialisation_score ();
 
 	}
 	
@@ -34,32 +18,33 @@ public class GameController : MonoBehaviour {
 	void Update () {
 	
 	}
-
-
-	private void initialisation_carte(){
-
+		
+	/// <summary>
+	/// Increases the ennemies score.
+	/// </summary>
+	public void IncreaseEnnemiesScore()
+	{
+		ScoreEnnemi++;
 	}
-
-
 
 	/// <summary>
-	/// Initialisation de l'ensemble des vaisseaux
+	/// Increases the allies score.
 	/// </summary>
-	private void initialisation_vaisseaux(List<GameObject> ListeVaisseaux , int NombreDeVaisseaux, Vector3 PointDeDepart)
+	public void IncreaseAlliesScore()
 	{
-//		for (int i = 0; i < NombreDeVaisseaux; i++) {
-//			ListeVaisseaux.Add((GameObject)Instantiate(Vaisseau));
-//		}
-//
-	
+		ScoreAllie++;
 	}
 
-	private void initialisation_drapeau(){
-
+	private void CheckMaximumScore()
+	{
+		if (ScoreAllie >= SCOREMAXIMUM )
+		{
+			//Passer au niveau suivant.
+		}
+		else if (ScoreEnnemi >= SCOREMAXIMUM)
+		{
+			//Le joueur a perdu
+		}
 	}
 
-	private void initialisation_score(){
-		ScoreAllie = 0; 
-		ScoreEnnemi = 0;
-	}
 }

@@ -29,6 +29,6 @@ public class TeamBase : MonoBehaviour
 
 	private void addTeamPoint()
 	{
-		//do stuff
+			//do stuff
 	}
 }
