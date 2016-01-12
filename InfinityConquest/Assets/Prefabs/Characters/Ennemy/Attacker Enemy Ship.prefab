@@ -217,7 +217,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -338,8 +338,8 @@ MonoBehaviour:
   speed: 250
   lifePoints: 2
   maxRotationSpeed: 8
-  shootDistance: 750
-  chaseDistance: 2500
+  shootDistance: 400
+  chaseDistance: 800
   shootDelay: 1
   player: {fileID: 0}
   playerFlag: {fileID: 0}
@@ -1912,11 +1912,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shootDistance
-      value: 750
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: chaseDistance
-      value: 2500
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shootDelay
@@ -1930,6 +1930,10 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 165584, guid: 705448ee57519f740b41b832dd65d24e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100002}

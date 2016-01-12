@@ -16,6 +16,21 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	private RaycastHit ObjetTouche;
 	private float shotSpeed = 1000000.0f;
 
+	public TeamBase playerBase;
+
+	void Start()
+	{
+		Initialisation ();
+	}
+
+	private void Initialisation()
+	{
+		playerBase = GameObject.Find ("playerBase").GetComponent<TeamBase> ();
+		if (playerBase == null) {
+			Debug.Log ("something went wrong while fetching ennemy base");
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -40,7 +55,12 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	private void Die()
 	{
 		Debug.Log ("I is dead");
-		// TO DO !!!!
+		Respawn ();
+	}
+
+	private void Respawn()
+	{
+		transform.position = playerBase.transform.position;
 	}
 
 	private void Fire()

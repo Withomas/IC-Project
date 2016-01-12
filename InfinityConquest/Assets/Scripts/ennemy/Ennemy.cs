@@ -110,6 +110,14 @@ public class Ennemy : MonoBehaviour {
 		}
 
 		gameObject.SetActive (false);
+		//yield return new WaitForSeconds(Random.Range(5f,15f));
+		ResetEnnemy ();
+	}
+
+	protected void ResetEnnemy()
+	{
+		transform.position = ennemyBase.transform.position;
+		gameObject.SetActive (true);
 	}
 
 	protected Vector3 getTargetDirection(Vector3 targetPosition)

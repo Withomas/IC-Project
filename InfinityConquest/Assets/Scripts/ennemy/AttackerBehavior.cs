@@ -31,11 +31,13 @@ public class AttackerBehavior : Ennemy
 
 	private void AttackBehavior()
 	{
-		if (getPlayerDistance () < shootDistance)
-		{
+		if (getPlayerDistance () < shootDistance) {
 			Shoot ();
+		} else if (getPlayerDistance () < chaseDistance) 
+		{
+			ChasePlayer ();
 		}
 
-		ChasePlayer ();
+		//ChasePlayer ();
 	}
 }
