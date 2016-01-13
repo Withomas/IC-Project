@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	//public GameObject Vaisseau;
 	public int ScoreAllie;
 	public int ScoreEnnemi;
-	private const int SCOREMAXIMUM = 1;
+	public int SCOREMAXIMUM;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
 	public void IncreaseEnnemiesScore()
 	{
 		ScoreEnnemi++;
+		CheckMaximumScore ();
 	}
 
 	/// <summary>
@@ -33,17 +34,18 @@ public class GameController : MonoBehaviour {
 	public void IncreaseAlliesScore()
 	{
 		ScoreAllie++;
+		CheckMaximumScore ();
 	}
 
 	private void CheckMaximumScore()
 	{
 		if (ScoreAllie >= SCOREMAXIMUM )
 		{
-			//Passer au niveau suivant.
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Intermediaire");
 		}
 		else if (ScoreEnnemi >= SCOREMAXIMUM)
 		{
-			//Le joueur a perdu
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Loose");
 		}
 	}
 

@@ -31,6 +31,9 @@ public class AttackerBehavior : Ennemy
 
 	private void AttackBehavior()
 	{
+		//On annule les rotations
+		rb.angularVelocity = Vector3.zero;
+
 		if (getPlayerDistance () < shootDistance) {
 			Shoot ();
 		} else if (getPlayerDistance () < chaseDistance) 

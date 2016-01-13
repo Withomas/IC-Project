@@ -19,16 +19,10 @@ public class TeamBase : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Flag") 
 		{
-			if (other.gameObject.GetComponent<DrapeauBehavior>().isEnemyFlag != isEnnemyBase)
-			{
+			if (other.gameObject.GetComponent<DrapeauBehavior> ().isEnemyFlag != isEnnemyBase) {
 				other.gameObject.GetComponent<DrapeauBehavior> ().Goal ();
-				addTeamPoint ();
 			}
 		}
 	}
-
-	private void addTeamPoint()
-	{
-			//do stuff
-	}
+		
 }

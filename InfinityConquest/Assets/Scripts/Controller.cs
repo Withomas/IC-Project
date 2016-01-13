@@ -15,9 +15,12 @@ public class Controller : MonoBehaviour {
 	public float acceleration = 0.1f;
 	private float actSpeed = 0.0f;			// keep it from 0 to 1
 	private Vector3 lastDir = new Vector3();
-		
+
+	private Rigidbody rb;
+
 	// Use this for initialization
 	void Start () {
+		this.rb = transform.GetComponent<Rigidbody> ();
 	}
 
 	// Update is called once per frame
@@ -48,6 +51,10 @@ public class Controller : MonoBehaviour {
 		
 		if (dir != Vector3.zero)
 		{
+			//Stop rotation, velocity
+			this.rb.velocity = Vector3.zero;
+			this.rb.angularVelocity = Vector3.zero;
+
 			// some movement 
 			if (actSpeed < 5)
 				actSpeed += acceleration * Time.deltaTime * 40;
@@ -86,11 +93,10 @@ public class Controller : MonoBehaviour {
 		rotation *= Time.deltaTime;
 
 		// Allow turning at anytime. Keep the character facing in the same direction as the Camera if the right mouse button is down.
-		if (Input.GetMouseButton(1))
-		{
-			transform.rotation = Quaternion.Euler(Camera.current.transform.eulerAngles.x, Camera.current.transform.eulerAngles.y, 0);
-			
-		}
+		//if (Input.GetMouseButton(1))
+		//{
+		//	transform.rotation = Quaternion.Euler(Camera.current.transform.eulerAngles.x, Camera.current.transform.eulerAngles.y, 0);
+		//}
 		
 		/*
         Move our player along it's new vertical axis

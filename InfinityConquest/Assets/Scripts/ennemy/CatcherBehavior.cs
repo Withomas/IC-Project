@@ -17,6 +17,9 @@ public class CatcherBehavior : Ennemy
 	// Update is called once per frame
 	void Update () {
 
+		//On annule les rotations
+		rb.angularVelocity = Vector3.zero;
+
 		if (hasFlag) 
 		{
 			MoveToBase ();
@@ -35,6 +38,8 @@ public class CatcherBehavior : Ennemy
 
 	private void DefenceBehavior()
 	{
+
+
 		if (getPlayerDistance () < shootDistance)
 		{
 			Shoot ();

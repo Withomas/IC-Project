@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11411290}
   - 54: {fileID: 5430428}
   - 136: {fileID: 13696936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnnemyLaser
   m_TagString: Laser
   m_Icon: {fileID: 0}
@@ -137,6 +137,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07098fb4bbb829748b61cdfe2e5653ce, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165584}

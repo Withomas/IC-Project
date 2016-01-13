@@ -6,6 +6,7 @@ public class loadOnClick : MonoBehaviour
 
 	public void loadScene(string scene)
     {
-		Application.LoadLevel(scene);
+		UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
+		//Application.LoadLevel(scene);
     }
 }

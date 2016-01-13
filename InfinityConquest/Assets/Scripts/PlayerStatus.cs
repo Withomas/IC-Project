@@ -11,10 +11,8 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 
 	[SerializeField]
 	private int PointsDevie = 0;
-	private int Equipe = 0;
-	private int Arme = 0;
+
 	private RaycastHit ObjetTouche;
-	private float shotSpeed = 1000000.0f;
 
 	public TeamBase playerBase;
 
@@ -84,8 +82,10 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Laser") 
-		{
-			Damage (1);
+		{						
+			if (other.gameObject.layer != 8) {
+				Damage (1);	
+			}
 		}
 	}
 }

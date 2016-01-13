@@ -95,11 +95,15 @@ public class Ennemy : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Laser") {
-			currentLifePoint--;
-			if (currentLifePoint <= 0) {
-				Die ();
+		if (other.gameObject.tag == "Laser") 
+		{
+			if (other.gameObject.layer != 9) {
+				currentLifePoint--;
+				if (currentLifePoint <= 0) {
+					Die ();
+				}
 			}
+
 		}
 	}
 
@@ -147,6 +151,7 @@ public class Ennemy : MonoBehaviour {
 			{
 				canShoot = false;
 				reload ();
+
 			}
 		}
 	}
@@ -192,9 +197,8 @@ public class Ennemy : MonoBehaviour {
 
 	protected IEnumerator reload()
 	{
-		yield return new WaitForSeconds (shootDelay);
-
 		canShoot = true;
+		yield return new WaitForSeconds (shootDelay);
 	}
 }
  
