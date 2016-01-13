@@ -9,4 +9,9 @@ public class loadOnClick : MonoBehaviour
 		UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
 		//Application.LoadLevel(scene);
     }
+
+	public void quitter()
+	{
+		Application.Quit();
+	}
 }

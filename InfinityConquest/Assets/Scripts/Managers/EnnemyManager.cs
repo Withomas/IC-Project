@@ -25,8 +25,10 @@ public class EnnemyManager : MonoBehaviour
 			for (int j = 0; j < ennemyPools[i].numberToSpawn; j++) 
 			{
 				ennemyPools[i].pool.Spawn(spawnPosition, Quaternion.Euler (spwanRotation));
-
-				spawnPosition += Vector3.left * ennemyPools[i].distanceSpawn;
+				if (j % 2 == 1)
+					spawnPosition = spawnPosition + ( Vector3.right * ennemyPools[i].distanceSpawn * j);
+				else
+					spawnPosition = spawnPosition + ( Vector3.left * ennemyPools[i].distanceSpawn * j);
 			}
 		}
 	}
