@@ -9,6 +9,14 @@ public class GameController : MonoBehaviour {
 	public int ScoreEnnemi;
 	public int SCOREMAXIMUM;
 
+
+	//Pour la minimap
+	public GameObject panelEnnemyFlag;
+	public GameObject panelAllierFlag;
+	public GameObject drapeauAllier; 
+	public GameObject drapeauEnnemy;
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -47,6 +55,11 @@ public class GameController : MonoBehaviour {
 		{
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Loose");
 		}
+	}
+
+	private void ModifyTheSmallMap(){
+		// TO DO
+		//panelEnnemyFlag.GetComponent<RectTransform>
 	}
 
 }
