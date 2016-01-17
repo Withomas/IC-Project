@@ -327,7 +327,7 @@ MonoBehaviour:
   maxRotationSpeed: 8
   shootDistance: 400
   chaseDistance: 1000
-  shootDelay: 1
+  shootDelay: 2
   player: {fileID: 0}
   playerFlag: {fileID: 0}
   ennemyFlag: {fileID: 0}
@@ -1920,7 +1920,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shootDelay
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name

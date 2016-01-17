@@ -35,7 +35,7 @@ public class Done_GameController : MonoBehaviour
 		{
 			if (Input.GetKeyDown (KeyCode.R))
 			{
-				Application.LoadLevel (Application.loadedLevel);
+				//Application.LoadLevel (Application.loadedLevel);
 			}
 		}
 	}

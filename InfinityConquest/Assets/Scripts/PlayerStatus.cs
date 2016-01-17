@@ -5,7 +5,7 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 
 	//public GameObject Bullet;
 	public GameObject Laser;
-
+	public int numeroLvl = 1;
 	public Transform RightFire;
 	public Transform LeftFire;
 
@@ -15,10 +15,11 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 	private RaycastHit ObjetTouche;
 
 	public TeamBase playerBase;
-
+	private int ptVieTotal ;
 	void Start()
 	{
 		Initialisation ();
+		ptVieTotal = PointsDevie;
 	}
 
 	private void Initialisation()
@@ -42,17 +43,22 @@ public class PlayerStatus : MonoBehaviour, IKillable {
 
 	public void Damage(int damage)
 	{
+		
 		this.PointsDevie = PointsDevie - damage;
 
 		if (PointsDevie <= 0)
 		{
 			Die ();
+
+		}
+		if (numeroLvl == 1) {
+			GameObject.Find ("PanelPointDeVieJoueur").GetComponent<RectTransform> ().sizeDelta = new Vector2(20*PointsDevie  ,30f);
 		}
 	}
 
 	private void Die()
 	{
-		Debug.Log ("I is dead");
+		PointsDevie = ptVieTotal;
 		Respawn ();
 	}
 

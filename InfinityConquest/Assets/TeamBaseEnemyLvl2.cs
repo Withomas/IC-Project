@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TeamBaseEnemyLvl2 : MonoBehaviour {
-
+	public GameObject PanelVie ;
 	public int lifePoint;
 	// Use this for initialization
 	void Start () {
@@ -21,6 +21,7 @@ public class TeamBaseEnemyLvl2 : MonoBehaviour {
 		{
 			if (other.gameObject.layer == 8) {
 				DamageBase (1);
+				ReduceBarLife ();
 			}
 		}
 	}
@@ -40,4 +41,10 @@ public class TeamBaseEnemyLvl2 : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("Win");
 	}
 
+	private void ReduceBarLife(){
+		//PanelVie.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0f, 0f);
+		float widthSize = 10 * lifePoint;
+		GameObject.Find ("PanelVieBaseEnemy").GetComponent<RectTransform> ().sizeDelta = new Vector2(widthSize  ,30f);
+
+	}
 }

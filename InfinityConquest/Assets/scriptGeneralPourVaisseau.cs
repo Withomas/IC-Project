@@ -4,7 +4,7 @@ using System.Collections;
 public class scriptGeneralPourVaisseau : MonoBehaviour {
 	
 	private int nombrePointDeVie = 100;
-	private float _speed = 700.0f;
+
 	public int indiceDeLEquipe ; // indice : -1 si vaisseau enemie et indice :1 si vaisseau allier
 	private string etat= "RechercheDrapeau";
 
@@ -29,9 +29,7 @@ public class scriptGeneralPourVaisseau : MonoBehaviour {
 
 		// Le fonction suivante ajoute un point de vie au vaisseau toutes les 200 frames
 		rajouteUnPointDeVieSelonNombreFramesPassees();
-		// Selon la situation change d'état 
-		changeEtatDuVaisseauSelonSituation();
-		// Selon l'état du vaisseau effectue une action
+
 		effectueUneActionSelonLEtat();
 
 
@@ -100,24 +98,7 @@ public class scriptGeneralPourVaisseau : MonoBehaviour {
 	}
 
 
-	//Selon le jeu, change l'état du vaisseau
-	private void changeEtatDuVaisseauSelonSituation()
-	{			
-		float seuilDistanceAdverseDangereux = 200f; 
-		if (indiceDeLEquipe == 1) {
-			// Si le vaisseau a un enfant drapeau 
-			// Alors l'etat = "RamenerLeDrapeauALaBase" 
-			/*if (calculDistanceEnnemiLePlusProche () < seuilDistanceAdverseDangereux) {
-				if (nombrePointDeVie < 20) {
-					etat = "Fuir";
-				}
-				else {
-					etat = "Poursuivre";
-				}
-			}
-			*/
-		}
-	}
+
 
 	// Retourne la distance avec l'ennemi le plus proche 
 	private float calculDistanceEnnemiLePlusProche(){

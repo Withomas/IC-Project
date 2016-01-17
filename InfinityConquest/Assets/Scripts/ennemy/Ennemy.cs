@@ -150,7 +150,7 @@ public class Ennemy : MonoBehaviour {
 			if (shootDelay > 0.0f) 
 			{
 				canShoot = false;
-				reload ();
+				StartCoroutine(reload());
 
 			}
 		}
@@ -195,10 +195,14 @@ public class Ennemy : MonoBehaviour {
 		laserBehavior.Shooted = true;
 	}
 
+
+
 	protected IEnumerator reload()
 	{
-		canShoot = true;
 		yield return new WaitForSeconds (shootDelay);
+		canShoot = true;
 	}
+
+
 }
  

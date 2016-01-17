@@ -50,7 +50,7 @@ public class CatcherBehavior : Ennemy
 		} 
 		else 
 		{
-			TurnAroundBase ();
+			ChasePlayer ();
 		}
 	}
 

@@ -24,32 +24,9 @@ public class changeMusic : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded (int level) {
-
-        switch (level)
-        {			
-			case 1:
-				source.Stop();
-	            source.clip = level1Music;
-	            source.Play();
-	            break;
-
-            case 5:
-				source.Stop();
-				source.clip = level2Music;
-                source.Play();
-                break;
-			case 4:
-				source.clip = GameOverMusic;
-				source.Play();
-				break;
-			case  6:
-				source.clip = WinMusic;
-				source.Play();
-				break;
-
-            default:
-                break;
-        }
+		if (level != 0 && level != 7) {
+			source.Stop();
+		}
 
 	}
 }

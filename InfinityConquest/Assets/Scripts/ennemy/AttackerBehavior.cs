@@ -35,6 +35,7 @@ public class AttackerBehavior : Ennemy
 		rb.angularVelocity = Vector3.zero;
 
 		if (getPlayerDistance () < shootDistance) {
+			ChasePlayer ();
 			Shoot ();
 		} else if (getPlayerDistance () < chaseDistance) 
 		{
